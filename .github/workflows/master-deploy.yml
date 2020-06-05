@@ -30,11 +30,11 @@ jobs:
       run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
         
     - name: Install Dependencies
-      run: $HOME/poetry/bin/poetry install
+      run: $HOME/.poetry/bin/poetry install
 
     - name: Run Tests
-      run: $HOME/poetry/bin/poetry run pytest --cov app
+      run: $HOME/.poetry/bin/poetry run pytest --cov app
       
     - name: deploy coverage
-      run: ~/poetry/bin/poetry run codecov -t ${{ secrets.CODECOV_TOKEN }}
+      run: ~/.poetry/bin/poetry run codecov -t ${{ secrets.CODECOV_TOKEN }}
       
