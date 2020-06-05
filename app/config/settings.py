@@ -12,6 +12,7 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
+AUTH_USER_MODEL = 'members.User'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '78wh&l-z7+dp6usuh2&p$fm5uvm_-7anp#p_%!)x^)(tr9y#8p'
 
@@ -31,7 +32,7 @@ DJANGO_APPS = [
 ]
 
 PROJECTS_APPS = [
-
+    'members.apps.MembersConfig',
 ]
 
 THIRD_PARTY_APPS = [
