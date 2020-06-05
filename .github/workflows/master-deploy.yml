@@ -36,5 +36,5 @@ jobs:
       run: $HOME/.poetry/bin/poetry run pytest --cov app
       
     - name: deploy coverage
-      run: ~/.poetry/bin/poetry run codecov -t ${{ secrets.CODECOV_TOKEN }}
+      run: ~/.poetry/bin/poetry run codecov --token ${{ secrets.CODECOV_TOKEN }}
       
