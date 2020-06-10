@@ -1,3 +1,5 @@
+import uuid
+
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -22,14 +24,18 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    email = models.EmailField(_('email'), max_length=128, unique=True)
+    email = models.EmailField(_('email address'), max_length=128, unique=True)
     password = models.CharField(_('password'), max_length=128)
-    created = models.DateTimeField(_('created'), auto_now_add=True)
-    is_active = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
+    created = models.DateTimeField(_('created date'), auto_now_add=True)
+    is_active = models.BooleanField(_('active'), default=False)
+    is_superuser = models.BooleanField(_('superuser'), default=False)
+    token = models.UUIDField(_('activate token'), default=uuid.uuid4, editable=False)
 
     class Meta:
         db_table = 'members'
+        indexes = [
+            models.Index(fields=['is_active'], name='activate_index')
+        ]
 
     objects = UserManager()
 
@@ -47,3 +53,17 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_superuser
+
+
+class Profile(models.Model):
+    user = models.OneToOneField('members.User',
+                                verbose_name=_('user'),
+                                related_name='profile',
+                                on_delete=models.CASCADE)
+    keywords = models.ManyToManyField('members.Keyword',
+                                      verbose_name=_('keyword'),
+                                      related_name='profiles')
+
+
+class Keyword(models.Model):
+    name = models.CharField(max_length=128)
