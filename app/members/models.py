@@ -65,20 +65,19 @@ class Profile(models.Model):
                                 verbose_name=_('user'),
                                 related_name='profile',
                                 on_delete=models.CASCADE)
-    keywords = models.ManyToManyField('members.Keyword',
-                                      verbose_name=_('keyword'),
-                                      related_name='profiles',
-                                      db_table='subscribe')
+
+    keywords = models.ManyToManyField('subscriptions.Keyword',
+                                      verbose_name='added keywords',
+                                      related_name='profiles')
+
+    subscriptions = models.ManyToManyField('articles.Company',
+                                           verbose_name='subscriptions',
+                                           related_name='profiles',
+                                           through='subscriptions.Subscription',
+                                           )
 
     class Meta:
         db_table = 'profile'
 
-
-class Keyword(models.Model):
-    name = models.CharField(max_length=128)
-
-    class Meta:
-        db_table = 'keyword'
-
     def __str__(self):
-        return self.name
+        return self.user.email
