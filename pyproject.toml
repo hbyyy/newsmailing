@@ -7,6 +7,12 @@ authors = ["hbyyy <qjaduddl94@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 django = "^3.0.6"
+pytest = "^5.4.3"
+pytest-django = "^3.9.0"
+codecov = "^2.1.4"
+pytest-cov = "^2.9.0"
+model_bakery = "^1.1.0"
+Faker = "^4.1.0"
 
 [tool.poetry.dev-dependencies]
 notebook = "^6.0.3"
