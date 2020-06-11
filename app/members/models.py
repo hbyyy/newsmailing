@@ -1,7 +1,9 @@
 import uuid
+from datetime import timedelta
 
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
@@ -22,6 +24,9 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def expired(self, **kwargs):
+        return self.filter(is_superuser=False, is_active=False, created__lte=timezone.now() - timedelta(days=3))
+
 
 class User(AbstractBaseUser):
     email = models.EmailField(_('email address'), max_length=128, unique=True)
@@ -32,9 +37,9 @@ class User(AbstractBaseUser):
     token = models.UUIDField(_('activate token'), default=uuid.uuid4, editable=False)
 
     class Meta:
-        db_table = 'members'
+        db_table = 'user'
         indexes = [
-            models.Index(fields=['is_active'], name='activate_index')
+            models.Index(fields=['is_active', 'id'], name='activate_index')
         ]
 
     objects = UserManager()
@@ -62,8 +67,18 @@ class Profile(models.Model):
                                 on_delete=models.CASCADE)
     keywords = models.ManyToManyField('members.Keyword',
                                       verbose_name=_('keyword'),
-                                      related_name='profiles')
+                                      related_name='profiles',
+                                      db_table='subscribe')
+
+    class Meta:
+        db_table = 'profile'
 
 
 class Keyword(models.Model):
     name = models.CharField(max_length=128)
+
+    class Meta:
+        db_table = 'keyword'
+
+    def __str__(self):
+        return self.name
