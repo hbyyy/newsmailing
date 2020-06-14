@@ -17,7 +17,7 @@ def test_email_auth(django_user_model, client):
                    EMAIL_HOST_USER,
                    ['qjaduddl94@gmail.com'])
 
-    # 보낸 에일은 mail.outbox로 간다.
+    # 보낸 메일은 mail.outbox로 간다.
     assert len(mail.outbox) == 1
     assert mail.outbox[0].subject == 'test에서 보낸 메일입니다'
     assert mail.outbox[0].body == 'test에서 보낸 메일입니다'

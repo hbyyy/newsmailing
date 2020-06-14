@@ -1,6 +1,7 @@
+from django.http import HttpResponse
 from django.shortcuts import render
-
 # Create your views here.
+from django.views import View
 from django.views.generic import FormView
 
 from members.forms import SubscribeForm
@@ -17,3 +18,8 @@ class Index(FormView):
 
     def form_valid(self, form):
         return super().form_valid()
+
+
+def email_auth(request, token):
+    return HttpResponse(f'hello world {token}')
+
