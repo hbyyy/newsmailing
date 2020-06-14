@@ -3,6 +3,7 @@ from datetime import timedelta
 
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -58,6 +59,9 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_superuser
+
+    def get_absolute_url(self):
+        return reverse('members:email-auth', args=[self.token])
 
 
 class Profile(models.Model):
