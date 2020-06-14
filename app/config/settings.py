@@ -137,3 +137,8 @@ EMAIL_HOST_USER = SECRETS['GOOGLE_ID']
 EMAIL_HOST_PASSWORD = SECRETS['GOOGLE_PASSWORD']
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
