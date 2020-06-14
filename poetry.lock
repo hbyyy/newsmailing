@@ -571,6 +571,14 @@ version = "2.6.1"
 
 [[package]]
 category = "main"
+description = "Python interface to Graphviz"
+name = "pygraphviz"
+optional = false
+python-versions = "*"
+version = "1.5"
+
+[[package]]
+category = "main"
 description = "Python parsing module"
 name = "pyparsing"
 optional = false
@@ -830,7 +838,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "64ff83bd56de37a45d1e657faee6497fc624008bbdfef4a6d6ad049714414c90"
+content-hash = "4a8781ce9af30bdc45a7792732b0b4e8362764cfb4e7d68fddd97682346cc774"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -1077,6 +1085,9 @@ py = [
 pygments = [
     {file = "Pygments-2.6.1-py3-none-any.whl", hash = "sha256:ff7a40b4860b727ab48fad6360eb351cc1b33cbf9b15a0f689ca5353e9463324"},
     {file = "Pygments-2.6.1.tar.gz", hash = "sha256:647344a061c249a3b74e230c739f434d7ea4d8b1d5f3721bc0f3558049b38f44"},
+]
+pygraphviz = [
+    {file = "pygraphviz-1.5.zip", hash = "sha256:50a829a305dc5a0fd1f9590748b19fece756093b581ac91e00c2c27c651d319d"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
