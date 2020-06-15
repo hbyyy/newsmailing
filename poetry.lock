@@ -570,7 +570,7 @@ python-versions = ">=3.5"
 version = "2.6.1"
 
 [[package]]
-category = "main"
+category = "dev"
 description = "Python interface to Graphviz"
 name = "pygraphviz"
 optional = false
@@ -838,7 +838,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "4a8781ce9af30bdc45a7792732b0b4e8362764cfb4e7d68fddd97682346cc774"
+content-hash = "f0e9cbe0a93b23db7eea19368ca37910206de79796a46d977677ea6c57902bec"
 python-versions = "^3.7"
 
 [metadata.files]
