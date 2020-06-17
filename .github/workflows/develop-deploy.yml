@@ -34,4 +34,6 @@ jobs:
 
     - name: Run Tests
       run: $HOME/.poetry/bin/poetry run pytest --cov app
-
+      env:
+        GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
+        GOOGLE_PASSWORD: ${{ secrets.GOOGLE_PASSWORD }}

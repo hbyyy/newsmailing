@@ -34,6 +34,9 @@ jobs:
 
     - name: Run Tests
       run: $HOME/.poetry/bin/poetry run pytest --cov app
+      env:
+        GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
+        GOOGLE_PASSWORD: ${{ secrets.GOOGLE_PASSWORD }}
       
     - name: deploy coverage
       run: ~/.poetry/bin/poetry run codecov -t ${{ secrets.CODECOV_TOKEN }}

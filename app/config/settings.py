@@ -11,9 +11,14 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 # SECRET Load
-
-with open(os.path.join(ROOT_DIR, 'secrets.json'), 'r') as f:
-    SECRETS = load(f)
+if os.environ.get('GOOGLE_ID'):
+    SECRETS = {
+        'GOOGLE_ID': os.environ.get('GOOGLE_ID'),
+        'GOOGLE_PASSWORD': os.environ.get('GOOGLE_PASSWORD')
+    }
+else:
+    with open(os.path.join(ROOT_DIR, 'secrets.json'), 'r') as f:
+        SECRETS = load(f)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
