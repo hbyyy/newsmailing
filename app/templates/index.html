@@ -2,5 +2,9 @@
 {% load static %}
 
 {% block contents %}
-    {{form}}
+    <form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">구독하기</button>
+    </form>
 {% endblock %}
