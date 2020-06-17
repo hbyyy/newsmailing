@@ -2,9 +2,9 @@ name: Django CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ develop ]
 
 jobs:
   build:
@@ -21,14 +21,14 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    
+
     - name: install curl
       run: |
         sudo apt install -y curl
-    
+
     - name: install Poetry
       run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-        
+
     - name: Install Dependencies
       run: $HOME/.poetry/bin/poetry install
 
@@ -37,7 +37,3 @@ jobs:
       env:
         GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
         GOOGLE_PASSWORD: ${{ secrets.GOOGLE_PASSWORD }}
-      
-    - name: deploy coverage
-      run: ~/.poetry/bin/poetry run codecov -t ${{ secrets.CODECOV_TOKEN }}
-      

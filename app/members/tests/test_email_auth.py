@@ -30,5 +30,5 @@ def test_email_auth(django_user_model, client):
 
     client.get(user.get_absolute_url())
 
-    user = django_user_model.objects.latest()
+    user = django_user_model.objects.latest('pk')
     assert user.is_active is True

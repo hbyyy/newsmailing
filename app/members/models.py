@@ -5,7 +5,7 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 
 # Create your models here.
@@ -61,7 +61,7 @@ class User(AbstractBaseUser):
         return self.is_superuser
 
     def get_absolute_url(self):
-        return reverse('members:email-auth', args=[self.token])
+        return reverse('members:activate', args=[self.token])
 
 
 class Profile(models.Model):
