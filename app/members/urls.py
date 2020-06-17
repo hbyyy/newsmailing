@@ -4,5 +4,6 @@ from members.views import email_auth
 
 app_name = 'members'
 urlpatterns = [
-    path('auth/<str:token>/', email_auth, name='email-auth'),
+    path('activate/<str:token>/', email_auth, name='activate'),
+
 ]

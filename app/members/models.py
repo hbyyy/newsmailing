@@ -61,7 +61,7 @@ class User(AbstractBaseUser):
         return self.is_superuser
 
     def get_absolute_url(self):
-        return reverse('members:email-auth', args=[self.token])
+        return reverse('members:activate', args=[self.token])
 
 
 class Profile(models.Model):

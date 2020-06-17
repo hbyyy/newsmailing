@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
 # Create your views here.
+from django.http import HttpResponse
+from django.views import View
 from django.views.generic import FormView
 
 from members.forms import SignupForm
@@ -13,6 +15,8 @@ class Index(FormView):
     success_url = '/'
 
     def form_valid(self, form):
+        user = form.save()
+        form.send_mail(user)
         return super().form_valid(form)
 
 
@@ -22,6 +26,6 @@ def email_auth(request, token):
             user = User.objects.get(token=token)
             user.is_active = True
             user.save()
-
-        except User.DoesNotExist():
+            return HttpResponse(f'user : {user.email} is activated!')
+        except User.DoesNotExist:
             pass
