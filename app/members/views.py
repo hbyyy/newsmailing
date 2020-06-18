@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic import FormView
 
 from members.forms import SignupForm
-
+from members.tasks import send_auth_mail
 User = get_user_model()
 
 
@@ -16,7 +16,7 @@ class Index(FormView):
 
     def form_valid(self, form):
         user = form.save()
-        form.send_mail(user)
+        send_auth_mail.delay(user.pk)
         return super().form_valid(form)
 
 

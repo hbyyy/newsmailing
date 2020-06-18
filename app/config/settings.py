@@ -50,6 +50,7 @@ PROJECTS_APPS = [
 
 THIRD_PARTY_APPS = [
     'django_extensions',
+    'django_celery_results',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECTS_APPS + THIRD_PARTY_APPS
@@ -147,3 +148,7 @@ GRAPH_MODELS = {
   'all_applications': True,
   'group_models': True,
 }
+
+
+# celery settings
+CELERY_RESULT_BACKEND = 'django-db'
