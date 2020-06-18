@@ -1,11 +1,11 @@
 from django.contrib.auth import get_user_model
 # Create your views here.
 from django.http import HttpResponse
-from django.views import View
 from django.views.generic import FormView
 
 from members.forms import SignupForm
-from members.tasks import send_auth_mail
+
+
 User = get_user_model()
 
 
@@ -15,8 +15,8 @@ class Index(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        user = form.save()
-        send_auth_mail.delay(user.pk)
+        form.save()
+        form.send_mail()
         return super().form_valid(form)
 
 
