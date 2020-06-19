@@ -13,8 +13,8 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # SECRET Load
 if os.environ.get('GOOGLE_ID'):
     SECRETS = {
-        'GOOGLE_ID': os.environ.get('GOOGLE_ID'),
-        'GOOGLE_PASSWORD': os.environ.get('GOOGLE_PASSWORD')
+        'EMAIL_ID': os.environ.get('EMAIL_ID'),
+        'EMAIL_PASSWORD': os.environ.get('EMAIL_PASSWORD')
     }
 else:
     with open(os.path.join(ROOT_DIR, 'secrets.json'), 'r') as f:
@@ -138,11 +138,13 @@ STATICFILES_DIRS = (
 
 # Email setting
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = SECRETS['GOOGLE_ID']
-EMAIL_HOST_PASSWORD = SECRETS['GOOGLE_PASSWORD']
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.daum.net'
+EMAIL_HOST_USER = SECRETS['EMAIL_ID']
+EMAIL_HOST_PASSWORD = SECRETS['EMAIL_PASSWORD']
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
+DEFAULT_FROM_EMAIL = 'DailyNewsMail <no-reply@freenewsmail.xyz>'
+
 
 GRAPH_MODELS = {
   'all_applications': True,

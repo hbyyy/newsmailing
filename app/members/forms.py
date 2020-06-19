@@ -29,4 +29,4 @@ class SignupForm(forms.Form):
         user = User.objects.get(email=self.cleaned_data['email'])
         html_message = render_to_string('email/signup_email.html',
                                         context={'token': user.token})
-        send_auth_mail_task.delay(self.cleaned_data['email'], html_message)
+        send_auth_mail_task(self.cleaned_data['email'], html_message)
