@@ -10,6 +10,7 @@ class Article(models.Model):
     subtitle = models.TextField(_('subtitle'), blank=True)
     contents = models.TextField(_('contents'))
     aid = models.CharField(_('article number'), max_length=12, unique=True)
+    url = models.URLField(_('article url'), blank=True)
     pub_date = models.DateField(_('publishing date'))
 
     pub_company = models.ForeignKey('articles.Company',

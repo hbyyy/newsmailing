@@ -15,6 +15,8 @@ Faker = "^4.1.0"
 model_bakery = "^1.1.0"
 celery = "^4.4.5"
 django-celery-results = "^1.2.1"
+Scrapy = "^2.1.0"
+scrapy-djangoitem = "^1.1.1"
 
 [tool.poetry.dev-dependencies]
 notebook = "^6.0.3"
