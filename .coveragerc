@@ -7,6 +7,7 @@ omit =
     app/config/wsgi.py
     app/config/asgi.py
     app/*/migrations/*
+    app/scraper/*
 
 [report]
 exclude_lines =
