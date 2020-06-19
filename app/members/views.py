@@ -16,9 +16,8 @@ class Index(FormView):
 
     def form_valid(self, form):
         user = form.save()
-        form.send_mail()
-        user.delete()
-
+        if user:
+            form.send_mail()
         return super().form_valid(form)
 
 
