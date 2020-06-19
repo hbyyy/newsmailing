@@ -6,6 +6,8 @@ import scrapy
 from pytz import timezone
 from scrapy.utils.log import configure_logging
 
+from scraper.items import ArticleItem
+
 
 class ArticleSpider(scrapy.Spider):
     name = 'Article'
@@ -38,20 +40,24 @@ class ArticleSpider(scrapy.Spider):
 
     def parse_articles(self, response):
         if response.status == 200:
+            item = ArticleItem()
             query = parse.parse_qs(parse.urlparse(response.url).query)
-            title = response.css('h3#articleTitle::text').get().strip()
-            subtitle = response.css('strong.media_end_summary').get()
             contents = response.xpath('//div[@id="articleBodyContents"]/text()').extract()
             if contents:
                 contents = ''.join(contents).strip()
             else:
                 contents = None
             oid = query['oid'][0]
+            aid = query['aid'][0]
+            title = response.css('h3#articleTitle::text').get().strip()
+            subtitle = response.css('strong.media_end_summary').get()
             pub_date = self.now.strftime("%Y%m%d")
-            yield {
-                'title': title,
-                'oid': oid,
-                'pub_date': pub_date
-            }
-        else:
-            pass
+
+            item['title'] = title
+            item['subtitle'] = subtitle
+            item['contents'] = contents
+            item['aid'] = aid
+            item['pub_date'] = pub_date
+
+            yield {'item': item, 'pub_date': pub_date}
+

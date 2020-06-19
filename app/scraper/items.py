@@ -6,12 +6,11 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from scrapy_djangoitem import DjangoItem
+
+from articles.models import Article
 
 
-class ArticleItem(scrapy.Item):
-    title = scrapy.Field()
-    subtitle = scrapy.Field()
-    contents = scrapy.Field()
-    pub_date = scrapy.Field()
-    oid = scrapy.Field()
+class ArticleItem(DjangoItem):
+    django_model = Article
 

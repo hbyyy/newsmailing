@@ -1047,6 +1047,17 @@ w3lib = ">=1.17.0"
 "zope.interface" = ">=4.1.3"
 
 [[package]]
+category = "main"
+description = "Scrapy extension to write scraped items using Django models"
+name = "scrapy-djangoitem"
+optional = false
+python-versions = "*"
+version = "1.1.1"
+
+[package.dependencies]
+six = "*"
+
+[[package]]
 category = "dev"
 description = "Send file to trash natively under Mac OS X, Windows and Linux."
 name = "send2trash"
@@ -1253,7 +1264,7 @@ test = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 
 [metadata]
-content-hash = "af77a6bbca34f7cea4edab7c830a553d1e2f4f4fb31c4b71a35ce7d115bac09e"
+content-hash = "2b345ce33b80609fab4aae272d77795da1cd8773a2cda7bac48a7e7d84ee169c"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -1774,6 +1785,10 @@ requests = [
 scrapy = [
     {file = "Scrapy-2.1.0-py2.py3-none-any.whl", hash = "sha256:883ab2dcb6cafb22c7448616baeb5b4d7bedef57ca6a9a5f4e902cb1d6e7aeca"},
     {file = "Scrapy-2.1.0.tar.gz", hash = "sha256:640aea0f9be9b055f5cfec5ab78ee88bb37a5be3809b138329bd2af51392ec7f"},
+]
+scrapy-djangoitem = [
+    {file = "scrapy-djangoitem-1.1.1.tar.gz", hash = "sha256:2c633ae1559f6e3d43c9a5ebb19aa5a64152deef434aa3fa57168e6b002d9c50"},
+    {file = "scrapy_djangoitem-1.1.1-py2.py3-none-any.whl", hash = "sha256:58da093778f2cd92734b5539adcb60d59854475050d7511c42173bd8c104acef"},
 ]
 send2trash = [
     {file = "Send2Trash-1.5.0-py3-none-any.whl", hash = "sha256:f1691922577b6fa12821234aeb57599d887c4900b9ca537948d2dac34aea888b"},
