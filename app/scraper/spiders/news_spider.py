@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib import parse
 
 import scrapy
@@ -51,12 +51,11 @@ class ArticleSpider(scrapy.Spider):
             aid = query['aid'][0]
             title = response.css('h3#articleTitle::text').get().strip()
             subtitles = response.css('div#articleBodyContents strong').getall()
-            pub_date = self.now.strftime("%Y%m%d")
 
             item['title'] = title
             item['subtitle'] = '<br>'.join(subtitles)
             item['contents'] = contents
             item['aid'] = aid
             item['pub_date'] = self.now
-
+            item['url'] = response.url
             yield {'item': item, 'oid': oid}
