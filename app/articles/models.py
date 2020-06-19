@@ -23,6 +23,11 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+    def save(self, oid=None, *args, **kwargs):
+        if oid:
+            self.pub_company = Company.objects.get(oid=kwargs.get('oid'))
+        super(Article, self).save(*args, **kwargs)
+
 
 class Company(models.Model):
     name = models.CharField(_('company name'), max_length=128)

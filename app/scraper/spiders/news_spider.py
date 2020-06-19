@@ -50,14 +50,13 @@ class ArticleSpider(scrapy.Spider):
             oid = query['oid'][0]
             aid = query['aid'][0]
             title = response.css('h3#articleTitle::text').get().strip()
-            subtitle = response.css('strong.media_end_summary').get()
+            subtitles = response.css('div#articleBodyContents strong').getall()
             pub_date = self.now.strftime("%Y%m%d")
 
             item['title'] = title
-            item['subtitle'] = subtitle
+            item['subtitle'] = '<br>'.join(subtitles)
             item['contents'] = contents
             item['aid'] = aid
-            item['pub_date'] = pub_date
+            item['pub_date'] = self.now
 
-            yield {'item': item, 'pub_date': pub_date}
-
+            yield {'item': item, 'oid': oid}
