@@ -15,8 +15,9 @@ class Index(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        form.save()
-        form.send_mail()
+        user = form.save()
+        if user:
+            form.send_mail()
         return super().form_valid(form)
 
 

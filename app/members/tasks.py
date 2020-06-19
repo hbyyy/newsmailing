@@ -1,10 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 
 from celery import shared_task
-from django.contrib.auth import get_user_model
 from django.core.mail import EmailMessage
-
-User = get_user_model()
 
 
 @shared_task
