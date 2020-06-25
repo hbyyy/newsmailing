@@ -9,8 +9,8 @@ from articles.models import Company
 
 class ArticlePipeline:
     def process_item(self, item, spider):
-        article = item['item']
-        oid = item['oid']
+        article = item.get('item')
+        oid = item.get('oid')
 
         article['pub_company'] = Company.objects.get(oid=oid)
         article.save()
