@@ -6,21 +6,15 @@ import scrapy
 from pytz import timezone
 from scrapy.utils.log import configure_logging
 
+from articles.models import Company
 from scraper.items import ArticleItem
 
 
 class ArticleSpider(scrapy.Spider):
     name = 'Article'
-    configure_logging(install_root_handler=False)
-    logging.basicConfig(
-        filename='log.txt',
-        format='%(levelname)s: %(message)s',
-        level=logging.ERROR
-    )
-
     now = datetime.now(tz=timezone('Asia/Seoul'))
     allowed_domains = ["news.naver.com"]
-    oid_list = ['032', '005', '020']
+    oid_list = Company.objects.values_list('oid', flat=True)
     start_urls = [f'https://news.naver.com/main/list.nhn?mode=LPOD&listType=paper&oid={oid}' for oid in oid_list]
 
     def parse(self, response):
