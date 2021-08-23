@@ -19,7 +19,7 @@ Scrapy = "^2.1.0"
 scrapy-djangoitem = "^1.1.1"
 
 [tool.poetry.dev-dependencies]
-notebook = "^6.0.3"
+notebook = "^6.4.1"
 django-extensions = "^2.2.9"
 django-debug-toolbar = "^2.2"
 model_bakery = "^1.1.0"
